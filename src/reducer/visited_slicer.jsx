@@ -15,10 +15,6 @@ const visited_reducer = (state, action) => {
         visitedUser: [...state.visitedUser, { id, item }],
       };
     }
-    // return {
-    //   ...state,
-    //   visitedUser: [...state.visitedUser, { id, item }],
-    // };
   }
 };
 
