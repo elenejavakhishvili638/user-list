@@ -1,0 +1,40 @@
+.user-img img {
+  width: 349px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.user-img {
+  margin-bottom: 10px;
+}
+
+.user-info {
+  margin-top: 0px;
+}
+
+.info,
+.address {
+  padding: 10px 10px 5px 10px;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.info legend,
+.address legend {
+  padding: 0 5px;
+}
+
+.personal-info,
+.address-info {
+  margin-top: 20px;
+}
+
+.info p,
+.address p {
+  margin-bottom: 6px;
+}
+
+.info span,
+.address span {
+  text-decoration: underline;
+}

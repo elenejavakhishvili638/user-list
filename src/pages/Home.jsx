@@ -91,10 +91,26 @@ const Home = () => {
     return () => cancel();
   }, [page, size]);
 
-  console.log(users);
+  //   const onUserClick = (item) => {
+  //     console.log(item);
+  //     const newuse = [...visitedUser, item];
+  //     setVisitedUser((prevValue) => [...prevValue, item]);
+
+  //     console.log(visitedUser);
+
+  //     localStorage.setItem("users", JSON.stringify(newuse));
+  //   };
+
+  //   console.log(visitedUser);
+  //   console.log(users);
+
   return (
     <div className="home">
-      <UserList users={users} />
+      <UserList
+        users={users}
+        // onUserClick={onUserClick}
+        // visitedUser={visitedUser}
+      />
     </div>
   );
 };

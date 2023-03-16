@@ -1,9 +1,15 @@
 import React from "react";
-import "./useList.css";
+import "./userList.css";
 import { Link } from "react-router-dom";
+import { useUserContext } from "../context/visited";
 
 const UserList = ({ users }) => {
-  console.log(users);
+  // console.log(visitedUser);
+
+  const { onUserClick } = useUserContext();
+
+  console.log(useUserContext());
+
   return (
     <div className="user-wrapper">
       {users.map((user) => {
@@ -14,6 +20,7 @@ const UserList = ({ users }) => {
             state={{ id: id }}
             key={id}
             className="user-container"
+            onClick={() => onUserClick(id, title)}
           >
             <div className="image-container">
               <img src={imageUrl} alt={name} />
