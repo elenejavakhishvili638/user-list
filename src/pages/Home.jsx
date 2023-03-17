@@ -3,15 +3,13 @@ import UserList from "../components/UserList";
 import axios from "axios";
 import "./home.css";
 
+import fetchUsers from "../shared/fetchUsers";
+
 import { useUserContext } from "../context/visited";
 
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const [loading, setLoading] = useState(true);
-  const [more, setMore] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(10);
 
@@ -21,29 +19,7 @@ const Home = () => {
 
   const observer = useRef();
 
-  useEffect(() => {
-    setLoading(true);
-    setIsError(false);
-    let cancel;
-    axios({
-      method: "GET",
-      url: `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${page}/${size}`,
-      cancelToken: new axios.CancelToken((c) => (cancel = c)),
-    })
-      .then((response) => {
-        setUsers((prevData) => [...prevData, ...response.data.list]);
-        setLoading(false);
-        // setMore(response.data.list);
-        setMore(response.data.list.length > 0);
-        // console.log(more);
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-        setIsError(true);
-        console.log(e);
-      });
-    return () => cancel();
-  }, [page, size]);
+  const { loading, isError, users, more } = fetchUsers(page, size);
 
   const lastUserElement = useCallback(
     (node) => {

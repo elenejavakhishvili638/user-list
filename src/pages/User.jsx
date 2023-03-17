@@ -1,65 +1,25 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import "./user.css";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import UserInfo from "../components/UserInfo";
 import { useUserContext } from "../context/visited";
 
+import fetchFriends from "../shared/fetchFriends";
+
 const User = () => {
-  // const [user, setUser] = useState();
-
   const { visitedUser } = useUserContext();
-
-  // console.log(visitedUser);
-
   let { userId } = useParams();
-
-  // console.log(useParams());
-
   const navigate = useNavigate();
 
   const { onUserClick } = useUserContext();
-
-  const [loading, setLoading] = useState(true);
-  const [more, setMore] = useState(false);
-  // const [error, setError] = useState({});
-  const [isError, setIsError] = useState(false);
-  const [friends, setFriends] = useState([]);
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(10);
-
-  // const [stateUserId, setStateUserId] = useState(userId);
 
   const location = useLocation();
 
   const { user, id } = location.state;
 
-  useEffect(() => {
-    setFriends([]);
-  }, [userId]);
-
-  useEffect(() => {
-    // setStateUserId(userId);
-    // console.log(userId);
-    setLoading(true);
-    setIsError(false);
-    let cancel;
-    axios({
-      method: "GET",
-      url: `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${userId}/friends/${page}/${size}`,
-      cancelToken: new axios.CancelToken((c) => (cancel = c)),
-    })
-      .then((response) => {
-        setFriends((prevData) => [...prevData, ...response.data.list]);
-        setLoading(false);
-        setMore(response.data.list.length > 0);
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-        // setError(true);
-      });
-    return () => cancel();
-  }, [page, size, userId]);
+  const { loading, isError, more, friends } = fetchFriends(page, size, userId);
 
   console.log(friends);
 
@@ -87,8 +47,6 @@ const User = () => {
         `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${id}`
       );
       const data = await response.json();
-      // setUser(data);
-      // console.log(user);
       navigate(`/${id}`, {
         state: {
           user: data,
@@ -105,7 +63,7 @@ const User = () => {
     <div className="user-cont">
       {user && <UserInfo user={user} />}
       {visitedUser &&
-        visitedUser.map((user, index) => {
+        visitedUser.map((user) => {
           console.log(user);
           return (
             <p
@@ -117,8 +75,6 @@ const User = () => {
                     `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${user.id}`
                   );
                   const data = await response.json();
-                  // setUser(data);
-                  // console.log(user);
                   navigate(`/${user.id}`, {
                     state: {
                       user: data,
