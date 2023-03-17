@@ -5,3 +5,34 @@
   flex-direction: column;
   margin-top: 20px;
 }
+
+.visited-paragraph {
+  cursor: pointer;
+  margin-bottom: 5px;
+  text-decoration: underline;
+  display: inline-block;
+  width: auto;
+}
+
+.clicked {
+  color: purple;
+}
+
+.visited-users-wrapper {
+  margin-top: 20px;
+  display: inline-block;
+  margin-bottom: 40px;
+  width: auto;
+  /* display: flex; */
+}
+
+.span {
+  color: black;
+}
+
+.visited-wrap {
+  display: inline-block;
+  width: auto;
+  margin-right: 15px;
+  /* display: flex; */
+}

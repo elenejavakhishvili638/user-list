@@ -37,7 +37,10 @@ const Home = () => {
     [loading, more]
   );
 
-  const handleClick = async (id, title) => {
+  const handleClick = async (id, prefix, name, lastName) => {
+    const fullName = prefix + " " + name + " " + lastName;
+
+    console.log(fullName);
     try {
       const response = await fetch(
         `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${id}`
@@ -51,7 +54,7 @@ const Home = () => {
           id: id,
         },
       });
-      onUserClick(id, title);
+      onUserClick(id, fullName, "true");
     } catch (error) {
       console.error(error);
     }
@@ -59,23 +62,19 @@ const Home = () => {
 
   return (
     <div className="home">
-      {/* <UserList
-        users={users}
-      /> */}
-
       <div className="user-wrapper">
         {users.map((user, index) => {
           const { id, imageUrl, lastName, name, prefix, title } = user;
+
           if (users.length === index + 1) {
             return (
               <div
                 key={id}
                 ref={lastUserElement}
                 onClick={() => {
-                  handleClick(id, title);
+                  handleClick(id, prefix, name, lastName);
                 }}
                 className="user-container"
-                // onClick={() => onUserClick(id, title)}
               >
                 <div className="image-container">
                   <img src={imageUrl} alt={name} />
@@ -91,15 +90,11 @@ const Home = () => {
           } else {
             return (
               <div
-                // ref={lastUserElement}
                 onClick={() => {
-                  handleClick(id, title);
+                  handleClick(id, prefix, name, lastName);
                 }}
-                // to={`/user/${title}`}
-                // state={{ id: id }}
                 key={id}
                 className="user-container"
-                // onClick={() => onUserClick(id, title)}
               >
                 <div className="image-container">
                   <img src={imageUrl} alt={name} />
@@ -122,62 +117,3 @@ const Home = () => {
 };
 
 export default Home;
-
-//   const [page, setPage] = useState(1);
-//   const [size, setSize] = useState(10);
-
-//   const fetchUsers = useCallback(async () => {
-//     const response = await fetch(
-//       `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${page}/${size}`
-//     );
-//     const data = await response.json();
-//     console.log(data);
-//     // setUsers((prevData) => {
-//     //   console.log("prev", prevData);
-//     //   return [...prevData, ...data.list];
-//     // });
-//   }, [page, size]);
-
-//   useEffect(() => {
-//     fetchUsers();
-//   }, [fetchUsers]);
-
-//   const fetchUsers = useCallback(() => {
-//     axios({
-//       method: "GET",
-//       url: `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${page}/${size}`,
-//     }).then((res) => setUsers((prevData) => [...prevData, ...res.data.list]));
-//   }, [page, size]);
-
-//   useEffect(() => {
-//     const controller = new AbortController();
-
-//     const { signal } = controller;
-
-//     const fetchUsers = async () => {
-//       try {
-//         const response = await axios.get(
-//           `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${page}/${size}`,
-//           { signal }
-//         );
-//         setUsers((prevData) => [...prevData, ...response.data.list]);
-//       } catch (error) {
-//         setLoading(false);
-//         if (signal.aborted) return;
-//         setIsError(true);
-//         setError({ message: error.message });
-//         // if (error.name === "AbortError") {
-//         //   console.log("Request aborted");
-//         // } else {
-//         //   console.log(error);
-//         // }
-//       }
-//       //   finally {
-//       //     setLoading(false);
-//       //   }
-//     };
-
-//     fetchUsers();
-
-//     return () => controller.abort();
-//   }, [page, size]);

@@ -2,7 +2,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import User from "./pages/User";
-import VisitedPage from "./pages/VisitedPage";
+import VisitedPage from "./components/VisitedPage";
 
 function App() {
   return (

@@ -10,8 +10,8 @@ const UserContext = createContext();
 const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(visited_reducer, initialState);
 
-  const onUserClick = (id, item) => {
-    dispatch({ type: "VISITED_USER", payload: { id, item } });
+  const onUserClick = (id, fullName, clicked) => {
+    dispatch({ type: "VISITED_USER", payload: { id, fullName, clicked } });
   };
 
   return (
