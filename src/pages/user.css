@@ -1,9 +1,11 @@
 .user-cont {
-  width: 90vw;
+  width: 95vw;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  padding: 0 20px;
+  border: 1px solid #ccc;
 }
 
 .visited-paragraph {
@@ -35,4 +37,8 @@
   width: auto;
   margin-right: 15px;
   /* display: flex; */
+}
+
+h2 {
+  margin-bottom: 20px;
 }

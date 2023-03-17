@@ -38,3 +38,25 @@
 .address span {
   text-decoration: underline;
 }
+
+@media (min-width: 991px) {
+  .user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .user-img img {
+    width: 260px;
+  }
+
+  .info {
+    width: 100%;
+    margin-left: 10px;
+  }
+
+  .address {
+    width: 20%;
+    margin-left: 10px;
+  }
+}

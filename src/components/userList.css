@@ -31,3 +31,15 @@
   font-size: 16px;
   margin-bottom: 4px;
 }
+
+@media (max-width: 991px) and (min-width: 500px) {
+  .user-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(190px, 2fr));
+  }
+}
+
+@media (min-width: 991px) {
+  .user-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 2fr));
+  }
+}

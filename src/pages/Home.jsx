@@ -8,10 +8,11 @@ import fetchUsers from "../shared/fetchUsers";
 import { useUserContext } from "../context/visited";
 
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const Home = () => {
   const [page, setPage] = useState(1);
-  const [size, setSize] = useState(10);
+  const [size, setSize] = useState(16);
 
   const navigate = useNavigate();
 
@@ -62,14 +63,14 @@ const Home = () => {
 
   return (
     <div className="home">
+      {/* <Loading /> */}
       <div className="user-wrapper">
         {users.map((user, index) => {
           const { id, imageUrl, lastName, name, prefix, title } = user;
-
           if (users.length === index + 1) {
             return (
               <div
-                key={id}
+                key={index}
                 ref={lastUserElement}
                 onClick={() => {
                   handleClick(id, prefix, name, lastName);
@@ -93,7 +94,7 @@ const Home = () => {
                 onClick={() => {
                   handleClick(id, prefix, name, lastName);
                 }}
-                key={id}
+                key={index}
                 className="user-container"
               >
                 <div className="image-container">
@@ -109,7 +110,7 @@ const Home = () => {
             );
           }
         })}
-        <div>{loading && "Loading..."}</div>
+        <div>{loading && <Loading />}</div>
         <div>{isError && "Error"}</div>
       </div>
     </div>

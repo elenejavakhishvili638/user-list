@@ -14,7 +14,7 @@ const User = () => {
 
   const { onUserClick } = useUserContext();
   const [page, setPage] = useState(1);
-  const [size, setSize] = useState(10);
+  const [size, setSize] = useState(16);
 
   const location = useLocation();
 
@@ -80,8 +80,7 @@ const User = () => {
               return <VisitedPage user={user} key={user.id} con={con} />;
           })}
       </div>
-      <h3>Friends:</h3>
-
+      <h2>Friends:</h2>
       <div className="user-wrapper">
         {friends &&
           friends.map((user, index) => {
