@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
+import { createContext, useContext, useReducer } from "react";
 import visited_reducer from "../reducer/visited_slicer";
 
 const initialState = {

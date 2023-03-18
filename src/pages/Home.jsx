@@ -41,13 +41,12 @@ const Home = () => {
   const handleClick = async (id, prefix, name, lastName) => {
     const fullName = prefix + " " + name + " " + lastName;
 
-    console.log(fullName);
+    // console.log(fullName);
     try {
       const response = await fetch(
         `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${id}`
       );
       const data = await response.json();
-      // setUser(data);
       // console.log(user);
       navigate(`/${id}`, {
         state: {
@@ -63,7 +62,6 @@ const Home = () => {
 
   return (
     <div className="home">
-      {/* <Loading /> */}
       <div className="user-wrapper">
         {users.map((user, index) => {
           const { id, imageUrl, lastName, name, prefix, title } = user;

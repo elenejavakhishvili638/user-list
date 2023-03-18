@@ -6,6 +6,7 @@ import { useUserContext } from "../context/visited";
 
 import fetchFriends from "../shared/fetchFriends";
 import VisitedPage from "../components/VisitedPage";
+import Loading from "../components/Loading";
 
 const User = () => {
   const { visitedUser } = useUserContext();
@@ -20,9 +21,9 @@ const User = () => {
 
   const { user } = location.state;
 
-  const { loading, isError, more, friends } = fetchFriends(page, size, userId);
+  const { loading, more, friends } = fetchFriends(page, size, userId);
 
-  console.log(friends);
+  // console.log(friends);
 
   const observer = useRef();
 
@@ -45,7 +46,7 @@ const User = () => {
   const handleClick = async (id, prefix, name, lastName) => {
     const fullName = prefix + " " + name + " " + lastName;
 
-    console.log(fullName);
+    // console.log(fullName);
     try {
       const response = await fetch(
         `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${id}`
@@ -58,8 +59,6 @@ const User = () => {
         },
       });
       onUserClick(id, fullName, "true");
-      // const newWord = prefix.concat(name, lastName);
-      // console.log(newWord);
     } catch (error) {
       console.error(error);
     }
@@ -71,16 +70,16 @@ const User = () => {
       <div className="visited-users-wrapper">
         {visitedUser &&
           visitedUser.map((user, index) => {
-            let con;
+            let last;
             if (
               visitedUser.length === index + 1
-                ? (con = "false")
-                : (con = "true")
+                ? (last = "false")
+                : (last = "true")
             )
-              return <VisitedPage user={user} key={user.id} con={con} />;
+              return <VisitedPage user={user} key={user.id} last={last} />;
           })}
       </div>
-      <h2>Friends:</h2>
+      <h2 style={{ marginLeft: "20px" }}>Friends:</h2>
       <div className="user-wrapper">
         {friends &&
           friends.map((user, index) => {
@@ -128,6 +127,7 @@ const User = () => {
               );
             }
           })}
+        {loading && <Loading />}
       </div>
     </div>
   );

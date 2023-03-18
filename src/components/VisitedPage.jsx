@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const VisitedPage = ({ user, con }) => {
-  console.log(con);
+const VisitedPage = ({ user, last }) => {
+  // console.log(con);
   const navigate = useNavigate();
   return (
     <div
@@ -32,7 +32,7 @@ const VisitedPage = ({ user, con }) => {
             : "visited-paragraph"
         }`}
       >{`${user.fullName}`}</div>{" "}
-      {con === "true" && <span>&gt;</span>}
+      {last === "true" && <span>&gt;</span>}
     </div>
   );
 };

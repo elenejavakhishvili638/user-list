@@ -3,9 +3,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  /* margin-top: 20px; */
-  padding: 0 20px;
-  border: 1px solid #ccc;
+  margin-top: 20px;
 }
 
 .visited-paragraph {
@@ -25,7 +23,7 @@
   display: inline-block;
   margin-bottom: 40px;
   width: auto;
-  /* display: flex; */
+  margin-left: 20px;
 }
 
 .span {
@@ -36,9 +34,20 @@
   display: inline-block;
   width: auto;
   margin-right: 15px;
-  /* display: flex; */
 }
 
 h2 {
   margin-bottom: 20px;
+}
+
+@media (min-width: 991px) {
+  .user-cont {
+    border: 1px solid #ccc;
+    margin-top: 0;
+    width: 1198px;
+  }
+
+  .user-wrapper {
+    margin: 0 8px;
+  }
 }

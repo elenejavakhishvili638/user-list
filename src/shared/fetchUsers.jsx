@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const fetchUsers = (page, size) => {
@@ -19,7 +19,6 @@ const fetchUsers = (page, size) => {
       .then((response) => {
         setUsers((prevData) => [...prevData, ...response.data.list]);
         setLoading(false);
-        // setMore(response.data.list);
         setMore(response.data.list.length > 0);
         // console.log(more);
       })

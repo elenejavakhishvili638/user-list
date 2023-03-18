@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const fetchFriends = (page, size, userId) => {
@@ -12,8 +12,6 @@ const fetchFriends = (page, size, userId) => {
   }, [userId]);
 
   useEffect(() => {
-    // setStateUserId(userId);
-    // console.log(userId);
     setLoading(true);
     setIsError(false);
     let cancel;
@@ -29,7 +27,6 @@ const fetchFriends = (page, size, userId) => {
       })
       .catch((e) => {
         if (axios.isCancel(e)) return;
-        // setError(true);
       });
     return () => cancel();
   }, [page, size, userId]);
