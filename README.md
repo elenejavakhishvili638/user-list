@@ -6,11 +6,15 @@ This is a Vite application that allows you to view user information. The app inc
 
 To get started, clone this repository and run the following command:
 
-## `npm install`
+``` 
+npm install
+```
 
 Once the dependencies have been installed, you can start the development server by running:
 
-## `npm run dev`
+``` 
+npm run dev
+```
 
 ---
 
